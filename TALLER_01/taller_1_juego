@@ -1,0 +1,43 @@
+create table if not exists jugadores(
+	ID_jugador int not null auto_increment,
+    usuario varchar(15) not null,
+    email varchar(50) not null,
+    puntuacion int default 0,
+    primary key (ID_jugador)
+);
+
+create table if not exists inventorio(
+	ID_objeto int not null auto_increment,
+    object_name varchar(25) not null,
+    ammount int,
+    ID_jugador int,
+    primary key (ID_objeto),
+    foreign key (ID_jugador) references jugadores(ID_jugador)
+);
+
+create table if not exists niveles(
+	ID_nivel int not null auto_increment,
+    nombre_nivel varchar(10) not null,
+    dificultad varchar(10),
+    primary key (ID_nivel)
+);
+
+create table if not exists logros(
+	ID_logro int not null,
+    nombre_logro varchar(20) not null,
+    primary key (ID_logro)
+);
+
+create table if not exists progreso(
+	id_progreso int auto_increment,
+    ID_jugador int,
+    ID_nivel int,
+    ID_logro int,
+    primary key (id_progreso),
+    foreign key (ID_jugador) references jugadores(ID_jugador),
+    foreign key (ID_nivel) references niveles(ID_nivel),
+    foreign key (ID_logro) references logros(ID_logro)
+);
+
+select * from jugadores;
+insert into jugadores(ID_jugador,usuario,email,puntuacion) values('0001','usuario1','usuario1@hotmail.com','1000')
