@@ -1,0 +1,46 @@
+create table if not exists orders(
+	ID int not null auto_increment,
+    primary key (ID)
+);
+
+create table if not exists food(
+  expiration_date date not null,
+  calories float not null,
+  primary key (expiration_date)
+  );
+  
+ create table if not exists Forniture(
+  manufacture_date date not null,
+  primary key (manufacture_date)
+  );
+  
+ create table if not exists Categories(
+  namess varchar(50)
+  );
+
+create table if not exists product(
+	ID_product int not null auto_increment,
+	name_category varchar(50) null,
+    food_expiration date null,
+    forniture_manufacture date null,
+    product_name varchar(50) null,
+    price float not null,
+    primary key (ID_product),
+    foreign key (name_category) references Categories(namess),
+    foreign key (food_expiration) references food(expiration_date),
+    foreign key (forniture_manufacture) references Forniture(manufacture_Date)
+);
+
+create table if not exists orders_line(
+	id_orders int not null,
+    id_product int not null,
+	ID_orderline int not null auto_increment,
+    quantity int null,
+    primary key (ID_orderline),
+    foreign key (id_orders) references orders(ID),
+    foreign key (id_product) references product(ID_product)
+);
+
+/* DML y DDL*/
+select * from product;
+insert into product(product_name, price) values('Nestle','15.00'); /*para agregar*/
