@@ -1,0 +1,20 @@
+CREATE VIEW TiposUsuarios AS
+SELECT nombre, apellido, tipo_empresa
+FROM Usuario;
+-----------------------
+
+CREATE VIEW MediosPagos AS
+SELECT concat(nombre,' ',apellido) AS nombre_apellido, estado_civil, direccion
+FROM Usuario;
+
+------------------------
+CREATE VIEW Autenticacion_Usuario AS
+SELECT A.fecha, A.nombre_usuario, U.apellido, U.ciudad, U.tipo_empresa
+FROM Autenticacion A
+JOIN Usuario U ON A.nombre_usuario = U.nombre_usuario;
+---------------------------
+
+CREATE VIEW Pruebas_Activas AS
+SELECT referencia, descripcion, estado
+FROM moduloPruebas
+WHERE estado = 'activo';
